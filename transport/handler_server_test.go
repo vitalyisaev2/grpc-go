@@ -30,9 +30,9 @@ import (
 	"time"
 
 	"golang.org/x/net/context"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/metadata"
-	"google.golang.org/grpc/status"
+	"github.com/vitalyisaev2/grpc-go/codes"
+	"github.com/vitalyisaev2/grpc-go/metadata"
+	"github.com/vitalyisaev2/grpc-go/status"
 )
 
 func TestHandlerTransport_NewServerHandlerTransport(t *testing.T) {

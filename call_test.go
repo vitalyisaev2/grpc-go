@@ -30,9 +30,9 @@ import (
 	"time"
 
 	"golang.org/x/net/context"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-	"google.golang.org/grpc/transport"
+	"github.com/vitalyisaev2/grpc-go/codes"
+	"github.com/vitalyisaev2/grpc-go/status"
+	"github.com/vitalyisaev2/grpc-go/transport"
 )
 
 var (

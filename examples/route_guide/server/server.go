@@ -33,14 +33,14 @@ import (
 	"time"
 
 	"golang.org/x/net/context"
-	"google.golang.org/grpc"
+	"github.com/vitalyisaev2/grpc-go"
 
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/grpclog"
+	"github.com/vitalyisaev2/grpc-go/credentials"
+	"github.com/vitalyisaev2/grpc-go/grpclog"
 
 	"github.com/golang/protobuf/proto"
 
-	pb "google.golang.org/grpc/examples/route_guide/routeguide"
+	pb "github.com/vitalyisaev2/grpc-go/examples/route_guide/routeguide"
 )
 
 var (

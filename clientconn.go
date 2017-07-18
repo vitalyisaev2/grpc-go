@@ -28,11 +28,11 @@ import (
 
 	"golang.org/x/net/context"
 	"golang.org/x/net/trace"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/grpclog"
-	"google.golang.org/grpc/keepalive"
-	"google.golang.org/grpc/stats"
-	"google.golang.org/grpc/transport"
+	"github.com/vitalyisaev2/grpc-go/credentials"
+	"github.com/vitalyisaev2/grpc-go/grpclog"
+	"github.com/vitalyisaev2/grpc-go/keepalive"
+	"github.com/vitalyisaev2/grpc-go/stats"
+	"github.com/vitalyisaev2/grpc-go/transport"
 )
 
 var (

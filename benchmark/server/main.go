@@ -26,8 +26,8 @@ import (
 	_ "net/http/pprof"
 	"time"
 
-	"google.golang.org/grpc/benchmark"
-	"google.golang.org/grpc/grpclog"
+	"github.com/vitalyisaev2/grpc-go/benchmark"
+	"github.com/vitalyisaev2/grpc-go/grpclog"
 )
 
 var (

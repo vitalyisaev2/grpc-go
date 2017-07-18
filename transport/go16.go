@@ -23,7 +23,7 @@ package transport
 import (
 	"net"
 
-	"google.golang.org/grpc/codes"
+	"github.com/vitalyisaev2/grpc-go/codes"
 
 	"golang.org/x/net/context"
 )

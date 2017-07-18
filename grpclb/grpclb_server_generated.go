@@ -22,8 +22,8 @@
 package grpclb
 
 import (
-	"google.golang.org/grpc"
-	lbpb "google.golang.org/grpc/grpclb/grpc_lb_v1"
+	"github.com/vitalyisaev2/grpc-go"
+	lbpb "github.com/vitalyisaev2/grpc-go/grpclb/grpc_lb_v1"
 )
 
 // Server API for LoadBalancer service

@@ -25,7 +25,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	apb "github.com/golang/protobuf/ptypes/any"
 	spb "google.golang.org/genproto/googleapis/rpc/status"
-	"google.golang.org/grpc/codes"
+	"github.com/vitalyisaev2/grpc-go/codes"
 )
 
 func TestErrorsWithSameParameters(t *testing.T) {

@@ -30,11 +30,11 @@ import (
 	"time"
 
 	"golang.org/x/net/context"
-	"google.golang.org/grpc"
-	testpb "google.golang.org/grpc/benchmark/grpc_testing"
-	"google.golang.org/grpc/benchmark/latency"
-	"google.golang.org/grpc/benchmark/stats"
-	"google.golang.org/grpc/grpclog"
+	"github.com/vitalyisaev2/grpc-go"
+	testpb "github.com/vitalyisaev2/grpc-go/benchmark/grpc_testing"
+	"github.com/vitalyisaev2/grpc-go/benchmark/latency"
+	"github.com/vitalyisaev2/grpc-go/benchmark/stats"
+	"github.com/vitalyisaev2/grpc-go/grpclog"
 )
 
 // Allows reuse of the same testpb.Payload object.

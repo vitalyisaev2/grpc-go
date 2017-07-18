@@ -29,11 +29,11 @@ import (
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/grpclog"
-	testpb "google.golang.org/grpc/interop/grpc_testing"
-	"google.golang.org/grpc/metadata"
+	"github.com/vitalyisaev2/grpc-go"
+	"github.com/vitalyisaev2/grpc-go/codes"
+	"github.com/vitalyisaev2/grpc-go/grpclog"
+	testpb "github.com/vitalyisaev2/grpc-go/interop/grpc_testing"
+	"github.com/vitalyisaev2/grpc-go/metadata"
 )
 
 var (

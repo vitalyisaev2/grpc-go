@@ -31,13 +31,13 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	"golang.org/x/net/context"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/credentials"
-	lbpb "google.golang.org/grpc/grpclb/grpc_lb_v1"
-	"google.golang.org/grpc/metadata"
-	"google.golang.org/grpc/naming"
-	testpb "google.golang.org/grpc/test/grpc_testing"
+	"github.com/vitalyisaev2/grpc-go"
+	"github.com/vitalyisaev2/grpc-go/codes"
+	"github.com/vitalyisaev2/grpc-go/credentials"
+	lbpb "github.com/vitalyisaev2/grpc-go/grpclb/grpc_lb_v1"
+	"github.com/vitalyisaev2/grpc-go/metadata"
+	"github.com/vitalyisaev2/grpc-go/naming"
+	testpb "github.com/vitalyisaev2/grpc-go/test/grpc_testing"
 )
 
 var (

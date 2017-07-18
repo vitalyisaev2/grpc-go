@@ -24,7 +24,7 @@ import (
 	"context"
 	"net"
 
-	"google.golang.org/grpc/codes"
+	"github.com/vitalyisaev2/grpc-go/codes"
 
 	netctx "golang.org/x/net/context"
 )

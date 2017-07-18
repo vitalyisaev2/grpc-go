@@ -25,14 +25,15 @@ import (
 	"sync"
 	"time"
 
+	"github.com/vitalyisaev2/grpc-go/codes"
+	"github.com/vitalyisaev2/grpc-go/grpclog"
+	"github.com/vitalyisaev2/grpc-go/metadata"
+	"github.com/vitalyisaev2/grpc-go/peer"
+	"github.com/vitalyisaev2/grpc-go/stats"
+	"github.com/vitalyisaev2/grpc-go/status"
+	"github.com/vitalyisaev2/grpc-go/transport"
 	"golang.org/x/net/context"
 	"golang.org/x/net/trace"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/metadata"
-	"google.golang.org/grpc/peer"
-	"google.golang.org/grpc/stats"
-	"google.golang.org/grpc/status"
-	"google.golang.org/grpc/transport"
 )
 
 // StreamHandler defines the handler called by gRPC server to complete the
@@ -110,17 +111,21 @@ func newClientStream(ctx context.Context, desc *StreamDesc, cc *ClientConn, meth
 		cancel context.CancelFunc
 	)
 	c := defaultCallInfo
+	grpclog.Warningln("GRPCDEBUG: Getting method config")
 	mc := cc.GetMethodConfig(method)
 	if mc.WaitForReady != nil {
+		grpclog.Warningln("GRPCDEBUG: WaitForReady is not nil")
 		c.failFast = !*mc.WaitForReady
 	}
 
 	if mc.Timeout != nil {
+		grpclog.Warningln("GRPCDEBUG: Timeout is not nil")
 		ctx, cancel = context.WithTimeout(ctx, *mc.Timeout)
 	}
 
 	opts = append(cc.dopts.callOptions, opts...)
 	for _, o := range opts {
+		grpclog.Warningln("GRPCDEBUG: option %v %T", o, o)
 		if err := o.before(&c); err != nil {
 			return nil, toRPCErr(err)
 		}

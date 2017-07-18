@@ -25,8 +25,8 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/golang/protobuf/proto"
 	"golang.org/x/net/context"
-	rgmock "google.golang.org/grpc/examples/route_guide/mock_routeguide"
-	rgpb "google.golang.org/grpc/examples/route_guide/routeguide"
+	rgmock "github.com/vitalyisaev2/grpc-go/examples/route_guide/mock_routeguide"
+	rgpb "github.com/vitalyisaev2/grpc-go/examples/route_guide/routeguide"
 )
 
 var (

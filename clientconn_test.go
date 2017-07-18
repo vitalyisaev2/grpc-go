@@ -25,8 +25,8 @@ import (
 
 	"golang.org/x/net/context"
 
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/keepalive"
+	"github.com/vitalyisaev2/grpc-go/credentials"
+	"github.com/vitalyisaev2/grpc-go/keepalive"
 )
 
 const tlsDir = "testdata/"

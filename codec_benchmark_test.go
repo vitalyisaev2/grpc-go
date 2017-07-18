@@ -25,7 +25,7 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"google.golang.org/grpc/test/codec_perf"
+	"github.com/vitalyisaev2/grpc-go/test/codec_perf"
 )
 
 func setupBenchmarkProtoCodecInputs(b *testing.B, payloadBaseSize uint32) []proto.Message {
