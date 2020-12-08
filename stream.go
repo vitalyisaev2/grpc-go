@@ -20,9 +20,13 @@ package grpc
 
 import (
 	"context"
+	"crypto/md5"
+	"encoding/hex"
 	"errors"
+	"fmt"
 	"io"
 	"math"
+	"runtime/debug"
 	"strconv"
 	"sync"
 	"time"
@@ -34,6 +38,7 @@ import (
 	"google.golang.org/grpc/internal/balancerload"
 	"google.golang.org/grpc/internal/binarylog"
 	"google.golang.org/grpc/internal/channelz"
+	"google.golang.org/grpc/internal/grpclog"
 	"google.golang.org/grpc/internal/grpcrand"
 	"google.golang.org/grpc/internal/transport"
 	"google.golang.org/grpc/metadata"
@@ -308,6 +313,8 @@ func newClientStream(ctx context.Context, desc *StreamDesc, cc *ClientConn, meth
 		cs.binlog.Log(logEntry)
 	}
 
+	startedAt, stack, checksum := captureStack()
+
 	if desc != unaryStreamDesc {
 		// Listen on cc and stream contexts to cleanup when the user closes the
 		// ClientConn or cancels the stream context.  In all other cases, an error
@@ -315,15 +322,32 @@ func newClientStream(ctx context.Context, desc *StreamDesc, cc *ClientConn, meth
 		// the client will eventually receive, and then we will cancel the stream's
 		// context in clientStream.finish.
 		go func() {
-			select {
-			case <-cc.ctx.Done():
-				cs.finish(ErrClientConnClosing)
-			case <-ctx.Done():
-				cs.finish(toRPCErr(ctx.Err()))
+			for {
+				select {
+				case <-cc.ctx.Done():
+					cs.finish(ErrClientConnClosing)
+				case <-ctx.Done():
+					cs.finish(toRPCErr(ctx.Err()))
+				case <-time.After(time.Hour):
+					msg := fmt.Sprintf(
+						"STREAM LEAK! UPTIME=%v CHECKSUM=%v STACK=%v",
+						time.Since(startedAt), stack, checksum,
+					)
+					// log replication :)
+					grpclog.Logger.Warning(msg)
+					fmt.Println(msg)
+				}
 			}
 		}()
 	}
 	return cs, nil
+}
+
+func captureStack() (time.Time, string, string) {
+	stack := debug.Stack()
+	checksum := md5.Sum(stack)
+	checksumHex := hex.EncodeToString(checksum[:])
+	return time.Now(), string(stack), checksumHex
 }
 
 // newAttemptLocked creates a new attempt with a transport.
