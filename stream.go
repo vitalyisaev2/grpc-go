@@ -322,17 +322,19 @@ func newClientStream(ctx context.Context, desc *StreamDesc, cc *ClientConn, meth
 		// the client will eventually receive, and then we will cancel the stream's
 		// context in clientStream.finish.
 		go func() {
+			ticker := time.NewTicker(time.Hour)
+			defer ticker.Stop()
+
 			for {
 				select {
 				case <-cc.ctx.Done():
 					cs.finish(ErrClientConnClosing)
+					return
 				case <-ctx.Done():
 					cs.finish(toRPCErr(ctx.Err()))
-				case <-time.After(time.Hour):
-					msg := fmt.Sprintf(
-						"STREAM LEAK! UPTIME=%v CHECKSUM=%v STACK=%v",
-						time.Since(startedAt), stack, checksum,
-					)
+					return
+				case <-ticker.C:
+					msg := fmt.Sprintf("STREAM LEAK! UPTIME=%v CHECKSUM=%v STACK=%v", time.Since(startedAt), stack, checksum)
 					// log replication :)
 					grpclog.Logger.Warning(msg)
 					fmt.Println(msg)
